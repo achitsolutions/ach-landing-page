@@ -1,26 +1,26 @@
 import { motion } from "framer-motion";
-import { Sparkles, Zap, TrendingUp, MessageSquare, FileSearch } from "lucide-react";
+import { Sparkles, Tag, FileText, PenTool, Zap } from "lucide-react";
 
 const aiFeatures = [
   {
-    icon: MessageSquare,
-    title: "Chatbots Inteligentes",
-    description: "Atendimento automatizado 24/7 com processamento de linguagem natural"
+    icon: Tag,
+    title: "Classificação & Priorização",
+    description: "Triagem inteligente de tickets, leads e demandas operacionais"
   },
   {
-    icon: FileSearch,
-    title: "Análise de Documentos",
-    description: "Extração e processamento inteligente de informações de documentos"
+    icon: FileText,
+    title: "Sumarização de Dados",
+    description: "Síntese de feedbacks, relatórios e informações operacionais"
   },
   {
-    icon: TrendingUp,
-    title: "Previsões & Analytics",
-    description: "Modelos preditivos para tomada de decisão baseada em dados"
+    icon: PenTool,
+    title: "Apoio à Escrita Técnica",
+    description: "Suporte na criação de respostas, documentação e comunicações"
   },
   {
     icon: Zap,
-    title: "Automação de Processos",
-    description: "Workflows inteligentes que aprendem e se adaptam"
+    title: "Automação com LLMs",
+    description: "Integração de modelos prontos a processos e fluxos existentes"
   }
 ];
 
@@ -39,13 +39,14 @@ const AISection = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 mb-6">
             <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-primary">Powered by AI</span>
+            <span className="text-sm font-medium text-primary">IA como Ferramenta</span>
           </div>
           <h2 className="section-title mb-4">
             IA na <span className="gradient-text">Prática</span>
           </h2>
           <p className="section-subtitle mx-auto">
-            Implementamos soluções de inteligência artificial que geram valor real
+            Utilização de inteligência artificial como apoio operacional e eficiência,
+            integrada a processos existentes
           </p>
         </motion.div>
 

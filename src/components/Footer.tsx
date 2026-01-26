@@ -1,4 +1,4 @@
-import { Terminal } from "lucide-react";
+import { Terminal, Linkedin } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -17,10 +17,19 @@ const Footer = () => {
             <a href="#sobre" className="hover:text-foreground transition-colors">Sobre</a>
             <a href="#tecnologias" className="hover:text-foreground transition-colors">Tech</a>
             <a href="#contato" className="hover:text-foreground transition-colors">Contato</a>
+            <a 
+              href="https://www.linkedin.com/in/carolinahonorio/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-primary transition-colors"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="w-4 h-4" />
+            </a>
           </nav>
           
           <p className="text-sm text-muted-foreground">
-            © {currentYear} ACH IT Solutions. Todos os direitos reservados.
+            © {currentYear} ACH IT Solutions
           </p>
         </div>
       </div>

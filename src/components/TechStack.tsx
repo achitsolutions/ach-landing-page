@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 
 const technologies = [
-  "React", "TypeScript", "Node.js", "Python", "AWS", "Azure", 
-  "Docker", "Kubernetes", "PostgreSQL", "MongoDB", "Redis",
-  "Next.js", "TensorFlow", "OpenAI", "GraphQL", "Terraform"
+  "Zapier", "Make", "APIs REST", "Webhooks", "Google Sheets", 
+  "SQL", "BigQuery", "Looker Studio", "Python", "GitHub", 
+  "Intercom", "Twilio", "Notion", "Slack"
 ];
 
 const TechStack = () => {
@@ -21,7 +21,7 @@ const TechStack = () => {
             Tech <span className="gradient-text">Stack</span>
           </h2>
           <p className="section-subtitle mx-auto">
-            Utilizamos as tecnologias mais modernas do mercado
+            Ferramentas e tecnologias utilizadas no dia a dia
           </p>
         </motion.div>
 

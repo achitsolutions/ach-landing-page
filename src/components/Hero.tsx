@@ -44,22 +44,22 @@ const Hero = () => {
           >
             <Terminal className="w-4 h-4 text-primary" />
             <span className="text-sm font-mono text-muted-foreground">
-              Soluções de TI Inteligentes
+              Consultoria Técnica Senior
             </span>
           </motion.div>
 
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
-            Transformamos{" "}
-            <span className="gradient-text">tecnologia</span>
+            Integrações,{" "}
+            <span className="gradient-text">automação</span>
             <br />
-            em resultados
+            e operações digitais
           </h1>
 
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
-            Desenvolvimento de software sob medida, infraestrutura cloud e 
-            soluções de IA para impulsionar seu negócio ao próximo nível.
+            Mais de 10 anos de experiência em tecnologia, com foco em
+            integrações de sistemas, dados e eficiência operacional.
           </p>
 
           {/* CTA Buttons */}
@@ -74,7 +74,7 @@ const Hero = () => {
               className="bg-primary text-primary-foreground hover:bg-primary/90 glow-box group"
               onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Fale Conosco
+              Entre em Contato
               <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button 
