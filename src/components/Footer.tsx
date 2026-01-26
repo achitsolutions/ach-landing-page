@@ -1,6 +1,8 @@
 import { Terminal, Linkedin } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Footer = () => {
+  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -13,10 +15,10 @@ const Footer = () => {
           </div>
           
           <nav className="flex items-center gap-6 text-sm text-muted-foreground">
-            <a href="#servicos" className="hover:text-foreground transition-colors">Serviços</a>
-            <a href="#sobre" className="hover:text-foreground transition-colors">Sobre</a>
-            <a href="#tecnologias" className="hover:text-foreground transition-colors">Tech</a>
-            <a href="#contato" className="hover:text-foreground transition-colors">Contato</a>
+            <a href="#servicos" className="hover:text-foreground transition-colors">{t("nav.services")}</a>
+            <a href="#sobre" className="hover:text-foreground transition-colors">{t("nav.about")}</a>
+            <a href="#tecnologias" className="hover:text-foreground transition-colors">{t("nav.tech")}</a>
+            <a href="#contato" className="hover:text-foreground transition-colors">{t("nav.contact")}</a>
             <a 
               href="https://www.linkedin.com/in/carolinahonorio/" 
               target="_blank" 
@@ -29,7 +31,7 @@ const Footer = () => {
           </nav>
           
           <p className="text-sm text-muted-foreground">
-            © {currentYear} ACH IT Solutions
+            © {currentYear} {t("footer.rights")}
           </p>
         </div>
       </div>

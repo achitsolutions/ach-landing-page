@@ -1,30 +1,33 @@
 import { motion } from "framer-motion";
 import { Workflow, BarChart3, Headphones, FileText } from "lucide-react";
-
-const services = [
-  {
-    icon: Workflow,
-    title: "Integrações & Automação",
-    description: "Zapier, Make, webhooks, APIs REST. Integração entre sistemas SaaS, automação de fluxos operacionais e prevenção de falhas."
-  },
-  {
-    icon: BarChart3,
-    title: "Dados & Analytics",
-    description: "Google Sheets como fonte de verdade, SQL, BigQuery, Looker Studio. Definição de métricas, KPIs e dashboards para tomada de decisão."
-  },
-  {
-    icon: Headphones,
-    title: "Suporte Técnico & Operações",
-    description: "Troubleshooting técnico, análise de incidentes, triagem de tickets, integração com produto e melhoria contínua de processos."
-  },
-  {
-    icon: FileText,
-    title: "Implementação & Processos",
-    description: "Documentação técnica, handoff entre times, padronização de fluxos, organização operacional e apoio a times em crescimento."
-  }
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Services = () => {
+  const { t } = useLanguage();
+
+  const services = [
+    {
+      icon: Workflow,
+      title: t("services.integrations.title"),
+      description: t("services.integrations.description")
+    },
+    {
+      icon: BarChart3,
+      title: t("services.data.title"),
+      description: t("services.data.description")
+    },
+    {
+      icon: Headphones,
+      title: t("services.support.title"),
+      description: t("services.support.description")
+    },
+    {
+      icon: FileText,
+      title: t("services.implementation.title"),
+      description: t("services.implementation.description")
+    }
+  ];
+
   return (
     <section id="servicos" className="py-24 relative">
       <div className="section-container">
@@ -36,10 +39,10 @@ const Services = () => {
           className="text-center mb-16"
         >
           <h2 className="section-title mb-4">
-            Áreas de <span className="gradient-text">Atuação</span>
+            {t("services.title1")} <span className="gradient-text">{t("services.title2")}</span>
           </h2>
           <p className="section-subtitle mx-auto">
-            Soluções técnicas focadas em eficiência e resultados concretos
+            {t("services.subtitle")}
           </p>
         </motion.div>
 

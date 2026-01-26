@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Terminal } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Hero = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background gradient */}
@@ -44,22 +47,21 @@ const Hero = () => {
           >
             <Terminal className="w-4 h-4 text-primary" />
             <span className="text-sm font-mono text-muted-foreground">
-              Consultoria Técnica Senior
+              {t("hero.badge")}
             </span>
           </motion.div>
 
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
-            Integrações,{" "}
-            <span className="gradient-text">automação</span>
+            {t("hero.headline1")}{" "}
+            <span className="gradient-text">{t("hero.headline2")}</span>
             <br />
-            e operações digitais
+            {t("hero.headline3")}
           </h1>
 
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
-            Mais de 10 anos de experiência em tecnologia, com foco em
-            integrações de sistemas, dados e eficiência operacional.
+            {t("hero.subheadline")}
           </p>
 
           {/* CTA Buttons */}
@@ -74,7 +76,7 @@ const Hero = () => {
               className="bg-primary text-primary-foreground hover:bg-primary/90 glow-box group"
               onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Entre em Contato
+              {t("hero.cta.primary")}
               <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button 
@@ -83,7 +85,7 @@ const Hero = () => {
               className="border-border/50 bg-card/30 backdrop-blur-sm hover:bg-card/50"
               onClick={() => document.getElementById('servicos')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Nossos Serviços
+              {t("hero.cta.secondary")}
             </Button>
           </motion.div>
         </motion.div>

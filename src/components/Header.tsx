@@ -2,18 +2,20 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Terminal, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const navItems = [
-  { label: "Serviços", href: "#servicos" },
-  { label: "Sobre", href: "#sobre" },
-  { label: "Tech", href: "#tecnologias" },
-  { label: "IA", href: "#ia" },
-  { label: "Contato", href: "#contato" }
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Header = () => {
+  const { language, setLanguage, t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const navItems = [
+    { label: t("nav.services"), href: "#servicos" },
+    { label: t("nav.about"), href: "#sobre" },
+    { label: t("nav.tech"), href: "#tecnologias" },
+    { label: t("nav.ai"), href: "#ia" },
+    { label: t("nav.contact"), href: "#contato" }
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,14 +52,39 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <Button
-            size="sm"
-            className="hidden md:inline-flex bg-primary text-primary-foreground hover:bg-primary/90"
-            onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            Fale Conosco
-          </Button>
+          {/* Language Toggle & CTA */}
+          <div className="hidden md:flex items-center gap-4">
+            <div className="flex items-center gap-1 text-sm">
+              <button
+                onClick={() => setLanguage("pt")}
+                className={`px-2 py-1 rounded transition-colors ${
+                  language === "pt" 
+                    ? "text-primary font-medium" 
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                PT
+              </button>
+              <span className="text-border">|</span>
+              <button
+                onClick={() => setLanguage("en")}
+                className={`px-2 py-1 rounded transition-colors ${
+                  language === "en" 
+                    ? "text-primary font-medium" 
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                EN
+              </button>
+            </div>
+            <Button
+              size="sm"
+              className="bg-primary text-primary-foreground hover:bg-primary/90"
+              onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              {t("nav.cta")}
+            </Button>
+          </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -94,6 +121,29 @@ const Header = () => {
                   {item.label}
                 </a>
               ))}
+              {/* Mobile Language Toggle */}
+              <div className="flex items-center gap-2 pt-2 border-t border-border/30">
+                <button
+                  onClick={() => setLanguage("pt")}
+                  className={`px-3 py-2 rounded transition-colors ${
+                    language === "pt" 
+                      ? "text-primary font-medium bg-primary/10" 
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  Português
+                </button>
+                <button
+                  onClick={() => setLanguage("en")}
+                  className={`px-3 py-2 rounded transition-colors ${
+                    language === "en" 
+                      ? "text-primary font-medium bg-primary/10" 
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  English
+                </button>
+              </div>
               <Button
                 className="bg-primary text-primary-foreground hover:bg-primary/90 mt-2"
                 onClick={() => {
@@ -101,7 +151,7 @@ const Header = () => {
                   setIsMobileMenuOpen(false);
                 }}
               >
-                Fale Conosco
+                {t("nav.cta")}
               </Button>
             </nav>
           </motion.div>
