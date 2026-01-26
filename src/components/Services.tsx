@@ -1,31 +1,26 @@
 import { motion } from "framer-motion";
-import { Code2, Cloud, Brain, Shield, Cog } from "lucide-react";
+import { Workflow, BarChart3, Headphones, FileText } from "lucide-react";
 
 const services = [
   {
-    icon: Code2,
-    title: "Desenvolvimento de Software",
-    description: "Aplicações web e mobile customizadas, APIs robustas e sistemas escaláveis para atender suas necessidades específicas."
+    icon: Workflow,
+    title: "Integrações & Automação",
+    description: "Zapier, Make, webhooks, APIs REST. Integração entre sistemas SaaS, automação de fluxos operacionais e prevenção de falhas."
   },
   {
-    icon: Cloud,
-    title: "Infraestrutura Cloud",
-    description: "Migração, arquitetura e gerenciamento de ambientes cloud com AWS, Azure e Google Cloud Platform."
+    icon: BarChart3,
+    title: "Dados & Analytics",
+    description: "Google Sheets como fonte de verdade, SQL, BigQuery, Looker Studio. Definição de métricas, KPIs e dashboards para tomada de decisão."
   },
   {
-    icon: Brain,
-    title: "Inteligência Artificial",
-    description: "Implementação de soluções de IA, machine learning e automação inteligente para otimizar processos."
+    icon: Headphones,
+    title: "Suporte Técnico & Operações",
+    description: "Troubleshooting técnico, análise de incidentes, triagem de tickets, integração com produto e melhoria contínua de processos."
   },
   {
-    icon: Shield,
-    title: "Segurança & Compliance",
-    description: "Proteção de dados, auditorias de segurança e adequação a regulamentações como LGPD."
-  },
-  {
-    icon: Cog,
-    title: "Consultoria Técnica",
-    description: "Análise de arquitetura, revisão de código e mentoria técnica para times de desenvolvimento."
+    icon: FileText,
+    title: "Implementação & Processos",
+    description: "Documentação técnica, handoff entre times, padronização de fluxos, organização operacional e apoio a times em crescimento."
   }
 ];
 
@@ -41,14 +36,14 @@ const Services = () => {
           className="text-center mb-16"
         >
           <h2 className="section-title mb-4">
-            Nossos <span className="gradient-text">Serviços</span>
+            Áreas de <span className="gradient-text">Atuação</span>
           </h2>
           <p className="section-subtitle mx-auto">
-            Soluções completas de tecnologia para transformar sua empresa
+            Soluções técnicas focadas em eficiência e resultados concretos
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {services.map((service, index) => (
             <motion.div
               key={service.title}

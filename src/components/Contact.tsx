@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Send, Mail, MapPin, Phone } from "lucide-react";
+import { Send, Mail, MapPin, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -35,7 +35,7 @@ const Contact = () => {
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1000));
     
-    toast.success("Mensagem enviada com sucesso! Entraremos em contato em breve.");
+    toast.success("Mensagem enviada com sucesso! Entrarei em contato em breve.");
     setFormData({ name: "", email: "", message: "" });
     setIsSubmitting(false);
   };
@@ -54,7 +54,7 @@ const Contact = () => {
             Entre em <span className="gradient-text">Contato</span>
           </h2>
           <p className="section-subtitle mx-auto">
-            Vamos conversar sobre como podemos ajudar seu negócio
+            Vamos conversar sobre como posso ajudar seu projeto
           </p>
         </motion.div>
 
@@ -73,17 +73,29 @@ const Contact = () => {
               </div>
               <div>
                 <h3 className="font-medium mb-1">Email</h3>
-                <p className="text-sm text-muted-foreground">contato@achit.com.br</p>
+                <a 
+                  href="mailto:achitsolutions.co@gmail.com" 
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  achitsolutions.co@gmail.com
+                </a>
               </div>
             </div>
             
             <div className="flex items-start gap-4">
               <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
-                <Phone className="w-5 h-5 text-primary" />
+                <Linkedin className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <h3 className="font-medium mb-1">Telefone</h3>
-                <p className="text-sm text-muted-foreground">+55 (11) 9999-9999</p>
+                <h3 className="font-medium mb-1">LinkedIn</h3>
+                <a 
+                  href="https://www.linkedin.com/in/carolinahonorio/" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  /in/carolinahonorio
+                </a>
               </div>
             </div>
             
@@ -93,7 +105,7 @@ const Contact = () => {
               </div>
               <div>
                 <h3 className="font-medium mb-1">Localização</h3>
-                <p className="text-sm text-muted-foreground">São Paulo, SP - Brasil</p>
+                <p className="text-sm text-muted-foreground">Brasil</p>
               </div>
             </div>
           </motion.div>
