@@ -1,30 +1,33 @@
 import { motion } from "framer-motion";
 import { Sparkles, Tag, FileText, PenTool, Zap } from "lucide-react";
-
-const aiFeatures = [
-  {
-    icon: Tag,
-    title: "Classificação & Priorização",
-    description: "Triagem inteligente de tickets, leads e demandas operacionais"
-  },
-  {
-    icon: FileText,
-    title: "Sumarização de Dados",
-    description: "Síntese de feedbacks, relatórios e informações operacionais"
-  },
-  {
-    icon: PenTool,
-    title: "Apoio à Escrita Técnica",
-    description: "Suporte na criação de respostas, documentação e comunicações"
-  },
-  {
-    icon: Zap,
-    title: "Automação com LLMs",
-    description: "Integração de modelos prontos a processos e fluxos existentes"
-  }
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const AISection = () => {
+  const { t } = useLanguage();
+
+  const aiFeatures = [
+    {
+      icon: Tag,
+      title: t("ai.classification.title"),
+      description: t("ai.classification.description")
+    },
+    {
+      icon: FileText,
+      title: t("ai.summarization.title"),
+      description: t("ai.summarization.description")
+    },
+    {
+      icon: PenTool,
+      title: t("ai.writing.title"),
+      description: t("ai.writing.description")
+    },
+    {
+      icon: Zap,
+      title: t("ai.automation.title"),
+      description: t("ai.automation.description")
+    }
+  ];
+
   return (
     <section id="ia" className="py-24 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
@@ -39,14 +42,13 @@ const AISection = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 mb-6">
             <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-primary">IA como Ferramenta</span>
+            <span className="text-sm font-medium text-primary">{t("ai.badge")}</span>
           </div>
           <h2 className="section-title mb-4">
-            IA na <span className="gradient-text">Prática</span>
+            {t("ai.title1")} <span className="gradient-text">{t("ai.title2")}</span>
           </h2>
           <p className="section-subtitle mx-auto">
-            Utilização de inteligência artificial como apoio operacional e eficiência,
-            integrada a processos existentes
+            {t("ai.subtitle")}
           </p>
         </motion.div>
 

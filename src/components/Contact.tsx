@@ -6,14 +6,17 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { z } from "zod";
-
-const contactSchema = z.object({
-  name: z.string().trim().min(1, "Nome é obrigatório").max(100, "Nome muito longo"),
-  email: z.string().trim().email("Email inválido").max(255, "Email muito longo"),
-  message: z.string().trim().min(1, "Mensagem é obrigatória").max(1000, "Mensagem muito longa")
-});
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Contact = () => {
+  const { language, t } = useLanguage();
+  
+  const contactSchema = z.object({
+    name: z.string().trim().min(1, language === "pt" ? "Nome é obrigatório" : "Name is required").max(100, language === "pt" ? "Nome muito longo" : "Name too long"),
+    email: z.string().trim().email(language === "pt" ? "Email inválido" : "Invalid email").max(255, language === "pt" ? "Email muito longo" : "Email too long"),
+    message: z.string().trim().min(1, language === "pt" ? "Mensagem é obrigatória" : "Message is required").max(1000, language === "pt" ? "Mensagem muito longa" : "Message too long")
+  });
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -35,7 +38,9 @@ const Contact = () => {
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1000));
     
-    toast.success("Mensagem enviada com sucesso! Entrarei em contato em breve.");
+    toast.success(t("contact.form.success"), {
+      description: t("contact.form.success.description")
+    });
     setFormData({ name: "", email: "", message: "" });
     setIsSubmitting(false);
   };
@@ -51,10 +56,10 @@ const Contact = () => {
           className="text-center mb-12"
         >
           <h2 className="section-title mb-4">
-            Entre em <span className="gradient-text">Contato</span>
+            {t("contact.title1")} <span className="gradient-text">{t("contact.title2")}</span>
           </h2>
           <p className="section-subtitle mx-auto">
-            Vamos conversar sobre como posso ajudar seu projeto
+            {t("contact.subtitle")}
           </p>
         </motion.div>
 
@@ -72,7 +77,7 @@ const Contact = () => {
                 <Mail className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <h3 className="font-medium mb-1">Email</h3>
+                <h3 className="font-medium mb-1">{t("contact.email.label")}</h3>
                 <a 
                   href="mailto:achitsolutions.co@gmail.com" 
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
@@ -104,8 +109,8 @@ const Contact = () => {
                 <MapPin className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <h3 className="font-medium mb-1">Localização</h3>
-                <p className="text-sm text-muted-foreground">Brasil</p>
+                <h3 className="font-medium mb-1">{t("contact.location.label")}</h3>
+                <p className="text-sm text-muted-foreground">{t("contact.location.value")}</p>
               </div>
             </div>
           </motion.div>
@@ -121,7 +126,7 @@ const Contact = () => {
             <form onSubmit={handleSubmit} className="glass-card rounded-xl p-6 space-y-4">
               <div>
                 <Input
-                  placeholder="Seu nome"
+                  placeholder={t("contact.form.name.placeholder")}
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="bg-background/50 border-border/50 focus:border-primary/50"
@@ -131,7 +136,7 @@ const Contact = () => {
               <div>
                 <Input
                   type="email"
-                  placeholder="Seu email"
+                  placeholder={t("contact.form.email.placeholder")}
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="bg-background/50 border-border/50 focus:border-primary/50"
@@ -140,7 +145,7 @@ const Contact = () => {
               </div>
               <div>
                 <Textarea
-                  placeholder="Sua mensagem"
+                  placeholder={t("contact.form.message.placeholder")}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className="bg-background/50 border-border/50 focus:border-primary/50 min-h-[120px] resize-none"
@@ -152,7 +157,9 @@ const Contact = () => {
                 className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
+                {isSubmitting 
+                  ? (language === "pt" ? "Enviando..." : "Sending...") 
+                  : t("contact.form.submit")}
                 <Send className="ml-2 w-4 h-4" />
               </Button>
             </form>

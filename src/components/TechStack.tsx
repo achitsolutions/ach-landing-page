@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const technologies = [
   "Zapier", "Make", "APIs REST", "Webhooks", "Google Sheets", 
@@ -7,6 +8,8 @@ const technologies = [
 ];
 
 const TechStack = () => {
+  const { t } = useLanguage();
+
   return (
     <section id="tecnologias" className="py-24 relative overflow-hidden">
       <div className="section-container">
@@ -18,10 +21,10 @@ const TechStack = () => {
           className="text-center mb-12"
         >
           <h2 className="section-title mb-4">
-            Tech <span className="gradient-text">Stack</span>
+            {t("tech.title1")} <span className="gradient-text">{t("tech.title2")}</span>
           </h2>
           <p className="section-subtitle mx-auto">
-            Ferramentas e tecnologias utilizadas no dia a dia
+            {t("tech.subtitle")}
           </p>
         </motion.div>
 
