@@ -36,7 +36,7 @@ const Header = () => {
           {/* Logo */}
           <a href="#" className="flex items-center gap-2">
             <Terminal className="w-6 h-6 text-primary" />
-            <span className="font-bold text-lg">ACH IT</span>
+            <span className="font-bold text-lg">ACH IT Solutions</span>
           </a>
 
           {/* Desktop Navigation */}
