@@ -35,14 +35,29 @@ const Contact = () => {
 
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    toast.success(t("contact.form.success"), {
-      description: t("contact.form.success.description")
-    });
-    setFormData({ name: "", email: "", message: "" });
-    setIsSubmitting(false);
+    try {
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          "form-name": "contact",
+          ...formData
+        }).toString()
+      });
+
+      if (!response.ok) {
+        throw new Error("Form submission failed");
+      }
+
+      toast.success(t("contact.form.success"), {
+        description: t("contact.form.success.description")
+      });
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      toast.error(language === "pt" ? "Erro ao enviar mensagem. Tente novamente." : "Failed to send message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -123,9 +138,23 @@ const Contact = () => {
             transition={{ duration: 0.6 }}
             className="lg:col-span-3"
           >
-            <form onSubmit={handleSubmit} className="glass-card rounded-xl p-6 space-y-4">
+            <form 
+              onSubmit={handleSubmit} 
+              name="contact" 
+              method="POST" 
+              data-netlify="true" 
+              netlify-honeypot="bot-field"
+              className="glass-card rounded-xl p-6 space-y-4"
+            >
+              <input type="hidden" name="form-name" value="contact" />
+              <p className="hidden">
+                <label>
+                  Don't fill this out: <input name="bot-field" />
+                </label>
+              </p>
               <div>
                 <Input
+                  name="name"
                   placeholder={t("contact.form.name.placeholder")}
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -135,6 +164,7 @@ const Contact = () => {
               </div>
               <div>
                 <Input
+                  name="email"
                   type="email"
                   placeholder={t("contact.form.email.placeholder")}
                   value={formData.email}
@@ -145,6 +175,7 @@ const Contact = () => {
               </div>
               <div>
                 <Textarea
+                  name="message"
                   placeholder={t("contact.form.message.placeholder")}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}

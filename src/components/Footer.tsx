@@ -9,9 +9,12 @@ const Footer = () => {
     <footer className="py-8 border-t border-border/30">
       <div className="section-container">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <Terminal className="w-5 h-5 text-primary" />
-            <span className="font-semibold">ACH IT Solutions</span>
+          <div className="flex flex-col items-center md:items-start gap-1">
+            <div className="flex items-center gap-2">
+              <Terminal className="w-5 h-5 text-primary" />
+              <span className="font-semibold">ACH IT Solutions</span>
+            </div>
+            <span className="text-xs text-muted-foreground">CNPJ: 56.202.848/0001-58</span>
           </div>
           
           <nav className="flex items-center gap-6 text-sm text-muted-foreground">
