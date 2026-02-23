@@ -73,8 +73,11 @@ const Contact = () => {
           <h2 className="section-title mb-4">
             {t("contact.title1")} <span className="gradient-text">{t("contact.title2")}</span>
           </h2>
-          <p className="section-subtitle mx-auto">
+          <p className="section-subtitle mx-auto mb-3">
             {t("contact.subtitle")}
+          </p>
+          <p className="text-sm text-muted-foreground max-w-xl mx-auto">
+            {t("contact.intro")}
           </p>
         </motion.div>
 

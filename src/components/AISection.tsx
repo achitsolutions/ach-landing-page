@@ -1,31 +1,22 @@
 import { motion } from "framer-motion";
-import { Sparkles, Tag, FileText, PenTool, Zap } from "lucide-react";
+import { Sparkles, CheckCircle2, Shield, FileText, Brain, Info } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 
 const AISection = () => {
   const { t } = useLanguage();
 
-  const aiFeatures = [
-    {
-      icon: Tag,
-      title: t("ai.classification.title"),
-      description: t("ai.classification.description")
-    },
-    {
-      icon: FileText,
-      title: t("ai.summarization.title"),
-      description: t("ai.summarization.description")
-    },
-    {
-      icon: PenTool,
-      title: t("ai.writing.title"),
-      description: t("ai.writing.description")
-    },
-    {
-      icon: Zap,
-      title: t("ai.automation.title"),
-      description: t("ai.automation.description")
-    }
+  const criteria = [
+    t("ai.criteria.1"),
+    t("ai.criteria.2"),
+    t("ai.criteria.3"),
+    t("ai.criteria.4"),
+  ];
+
+  const hoverCards = [
+    { icon: Shield, titleKey: "ai.hover.ethics.title", textKey: "ai.hover.ethics.text" },
+    { icon: FileText, titleKey: "ai.hover.docs.title", textKey: "ai.hover.docs.text" },
+    { icon: Brain, titleKey: "ai.hover.critical.title", textKey: "ai.hover.critical.text" },
   ];
 
   return (
@@ -52,25 +43,85 @@ const AISection = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {aiFeatures.map((feature, index) => (
-            <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="flex gap-4 p-5 rounded-xl glass-card group"
-            >
-              <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                <feature.icon className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-semibold mb-1">{feature.title}</h3>
-                <p className="text-sm text-muted-foreground">{feature.description}</p>
-              </div>
-            </motion.div>
-          ))}
+        <div className="max-w-3xl mx-auto">
+          {/* Intro text */}
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-sm text-muted-foreground leading-relaxed text-center mb-10"
+          >
+            {t("ai.intro")}
+          </motion.p>
+
+          {/* Criteria */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="glass-card rounded-xl p-6 mb-8"
+          >
+            <h3 className="font-semibold text-sm mb-4">{t("ai.criteria.title")}</h3>
+            <div className="space-y-3">
+              {criteria.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.08 }}
+                  className="flex items-start gap-3"
+                >
+                  <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                  <span className="text-sm text-foreground/90">{item}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Hover cards for principles */}
+          <div className="grid md:grid-cols-3 gap-4 mb-10">
+            {hoverCards.map((card, index) => (
+              <HoverCard key={card.titleKey}>
+                <HoverCardTrigger asChild>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="glass-card rounded-xl p-4 cursor-default hover:border-primary/30 transition-colors group"
+                  >
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                        <card.icon className="w-4 h-4 text-primary" />
+                      </div>
+                      <h4 className="text-sm font-medium">{t(card.titleKey)}</h4>
+                    </div>
+                    <div className="flex items-center gap-1 text-xs text-muted-foreground/60">
+                      <Info className="w-3 h-3" />
+                      <span>hover</span>
+                    </div>
+                  </motion.div>
+                </HoverCardTrigger>
+                <HoverCardContent className="w-80 text-sm">
+                  {t(card.textKey)}
+                </HoverCardContent>
+              </HoverCard>
+            ))}
+          </div>
+
+          {/* Closing */}
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-sm text-muted-foreground leading-relaxed text-center"
+          >
+            {t("ai.closing")}
+          </motion.p>
         </div>
       </div>
     </section>
