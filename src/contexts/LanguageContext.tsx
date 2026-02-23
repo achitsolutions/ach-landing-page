@@ -19,11 +19,11 @@ const translations = {
     "nav.cta": "Fale Conosco",
 
     // Hero
-    "hero.badge": "Consultoria Técnica Senior",
-    "hero.headline1": "Integrações",
+    "hero.badge": "Consultoria Técnica Sênior",
+    "hero.headline1": "Integrações,",
     "hero.headline2": "Engenharia de dados",
-    "hero.headline3": "Operações estruturadas",
-    "hero.subheadline": "Trabalho na interseção entre operações, tecnologia e dados, ajudando a transformar ambientes complexos em estruturas organizadas, eficientes e pensadas para o longo prazo.",
+    "hero.headline3": "& Operações",
+    "hero.subheadline": "Trabalho na interseção entre operações digitais, tecnologia e dados, ajudando a transformar ambientes complexos em estruturas organizadas, eficientes e pensadas para o longo prazo.",
     "hero.cta.primary": "Entrar em Contato",
     "hero.cta.secondary": "Nossos Serviços",
     "hero.context.title": "O problema",
@@ -83,9 +83,9 @@ const translations = {
     "about.experience": "Experiência Profissional",
     "about.cta": "Conecte no LinkedIn",
     // Company contexts
-    "about.company.quintoandar": "Marketplace imobiliário — Tecnologia & Operações",
-    "about.company.ifood": "Plataforma de delivery — Suporte Técnico & Integrações",
-    "about.company.uber": "Tecnologia para mobilidade — Operações & Processos",
+    "about.company.quintoandar": "Marketplace imobiliário digital — Operações & Reports",
+    "about.company.ifood": "Plataforma de delivery em larga escala — Suporte Técnico & Integrações",
+    "about.company.uber": "Plataforma global de mobilidade — Operações & Processos",
     "about.company.99": "Plataforma digital de mobilidade — Tecnologia & Automação",
 
     // Tech Stack - now "Como eu trabalho"
