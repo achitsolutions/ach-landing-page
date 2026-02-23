@@ -21,7 +21,7 @@ const translations = {
     // Hero
     "hero.badge": "Consultoria Técnica Sênior",
     "hero.headline1": "Integrações,",
-    "hero.headline2": "Engenharia de dados",
+    "hero.headline2": "Dados",
     "hero.headline3": "& Operações",
     "hero.subheadline": "Trabalho na interseção entre operações digitais, tecnologia e dados, ajudando a transformar ambientes complexos em estruturas organizadas, eficientes e pensadas para o longo prazo.",
     "hero.cta.primary": "Entrar em Contato",
