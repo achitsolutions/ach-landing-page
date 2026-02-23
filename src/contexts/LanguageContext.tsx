@@ -168,9 +168,9 @@ const translations = {
 
     // Hero
     "hero.badge": "Senior Technical Consultant",
-    "hero.headline1": "I organize systems, processes and data",
-    "hero.headline2": "for clearer",
-    "hero.headline3": "and sustainable decisions",
+    "hero.headline1": "Integrations,",
+    "hero.headline2": "Data",
+    "hero.headline3": "& Operations",
     "hero.subheadline": "I work at the intersection of operations, technology, and data — helping transform complex environments into organized, efficient structures built for the long term.",
     "hero.cta.primary": "Get in Touch",
     "hero.cta.secondary": "Our Services",
@@ -231,9 +231,9 @@ const translations = {
     "about.experience": "Professional Experience",
     "about.cta": "Connect on LinkedIn",
     // Company contexts
-    "about.company.quintoandar": "Real estate marketplace — Technology & Operations",
+    "about.company.quintoandar": "Real estate marketplace — Operations manager & Reports",
     "about.company.ifood": "Delivery platform — Technical Support & Integrations",
-    "about.company.uber": "Mobility technology — Operations & Processes",
+    "about.company.uber": "Global mobility technology — Operations & Processes",
     "about.company.99": "Digital mobility platform — Technology & Automation",
 
     // Tech Stack - now "How I work"
