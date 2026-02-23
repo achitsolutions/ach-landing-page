@@ -20,9 +20,9 @@ const translations = {
 
     // Hero
     "hero.badge": "Consultoria Técnica Senior",
-    "hero.headline1": "Organizo sistemas, processos e dados",
-    "hero.headline2": "para decisões",
-    "hero.headline3": "mais claras e sustentáveis",
+    "hero.headline1": "Integrações",
+    "hero.headline2": "Engenharia de dados",
+    "hero.headline3": "Operações estruturadas",
     "hero.subheadline": "Trabalho na interseção entre operações, tecnologia e dados, ajudando a transformar ambientes complexos em estruturas organizadas, eficientes e pensadas para o longo prazo.",
     "hero.cta.primary": "Entrar em Contato",
     "hero.cta.secondary": "Nossos Serviços",
