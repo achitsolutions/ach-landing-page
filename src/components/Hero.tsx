@@ -41,7 +41,7 @@ const Hero = () => {
 
       {/* Main hero area */}
       <div className="flex-1 flex items-center justify-center relative z-10">
-        <div className="section-container">
+        <div className="section-container pt-24">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
