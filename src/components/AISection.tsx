@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import { Sparkles, CheckCircle2, Shield, FileText, Brain, Info } from "lucide-react";
+import { Sparkles, CheckCircle2, Shield, FileText, Brain } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import ExpandableCard from "@/components/ExpandableCard";
 
 const AISection = () => {
   const { t } = useLanguage();
@@ -13,7 +13,7 @@ const AISection = () => {
     t("ai.criteria.4"),
   ];
 
-  const hoverCards = [
+  const principleCards = [
     { icon: Shield, titleKey: "ai.hover.ethics.title", textKey: "ai.hover.ethics.text" },
     { icon: FileText, titleKey: "ai.hover.docs.title", textKey: "ai.hover.docs.text" },
     { icon: Brain, titleKey: "ai.hover.critical.title", textKey: "ai.hover.critical.text" },
@@ -81,34 +81,28 @@ const AISection = () => {
             </div>
           </motion.div>
 
-          {/* Hover cards for principles */}
+          {/* Principle cards - expandable */}
           <div className="grid md:grid-cols-3 gap-4 mb-10">
-            {hoverCards.map((card, index) => (
-              <HoverCard key={card.titleKey}>
-                <HoverCardTrigger asChild>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className="glass-card rounded-xl p-4 cursor-default hover:border-primary/30 transition-colors group"
-                  >
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                        <card.icon className="w-4 h-4 text-primary" />
-                      </div>
-                      <h4 className="text-sm font-medium">{t(card.titleKey)}</h4>
+            {principleCards.map((card, index) => (
+              <motion.div
+                key={card.titleKey}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="glass-card rounded-xl p-4 group"
+              >
+                <ExpandableCard
+                  expandedContent={t(card.textKey)}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                      <card.icon className="w-4 h-4 text-primary" />
                     </div>
-                    <div className="flex items-center gap-1 text-xs text-muted-foreground/60">
-                      <Info className="w-3 h-3" />
-                      <span>hover</span>
-                    </div>
-                  </motion.div>
-                </HoverCardTrigger>
-                <HoverCardContent className="w-80 text-sm">
-                  {t(card.textKey)}
-                </HoverCardContent>
-              </HoverCard>
+                    <h4 className="text-sm font-medium">{t(card.titleKey)}</h4>
+                  </div>
+                </ExpandableCard>
+              </motion.div>
             ))}
           </div>
 

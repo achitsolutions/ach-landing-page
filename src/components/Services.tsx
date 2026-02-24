@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-import { Database, Workflow, Settings, FileText, GraduationCap, ArrowRight, Info } from "lucide-react";
+import { Database, Workflow, Settings, FileText, GraduationCap, ArrowRight, Link2 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Button } from "@/components/ui/button";
+import ExpandableCard from "@/components/ExpandableCard";
 
 const Services = () => {
   const { t } = useLanguage();
@@ -10,33 +10,39 @@ const Services = () => {
   const services = [
     {
       icon: Database,
-      titleKey: "services.data.title",
-      descKey: "services.data.description",
-      hoverKey: "services.data.hover",
+      titleKey: "services.dataeng.title",
+      descKey: "services.dataeng.description",
+      expandKey: "services.dataeng.expand",
+    },
+    {
+      icon: Link2,
+      titleKey: "services.integrations.title",
+      descKey: "services.integrations.description",
+      expandKey: "services.integrations.expand",
     },
     {
       icon: Workflow,
       titleKey: "services.automation.title",
       descKey: "services.automation.description",
-      hoverKey: "services.automation.hover",
+      expandKey: "services.automation.expand",
     },
     {
       icon: Settings,
       titleKey: "services.systems.title",
       descKey: "services.systems.description",
-      hoverKey: "services.systems.hover",
+      expandKey: "services.systems.expand",
     },
     {
       icon: FileText,
       titleKey: "services.documentation.title",
       descKey: "services.documentation.description",
-      hoverKey: "services.documentation.hover",
+      expandKey: "services.documentation.expand",
     },
     {
       icon: GraduationCap,
       titleKey: "services.workshops.title",
       descKey: "services.workshops.description",
-      hoverKey: "services.workshops.hover",
+      expandKey: "services.workshops.expand",
     },
   ];
 
@@ -54,28 +60,18 @@ const Services = () => {
             {t("services.title1")} <span className="gradient-text">{t("services.title2")}</span>
           </h2>
           <p className="section-subtitle mx-auto">
-            {t("services.subtitle")}
+            {t("services.intro")}
           </p>
         </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-sm text-muted-foreground text-center max-w-2xl mx-auto mb-12"
-        >
-          {t("services.intro")}
-        </motion.p>
-
-        {/* Service cards - top row 3, bottom row 2 centered */}
+        {/* Service cards - top row 3, bottom row 3 */}
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-3 gap-6 mb-6">
             {services.slice(0, 3).map((service, index) => (
               <ServiceCard key={service.titleKey} service={service} index={index} t={t} />
             ))}
           </div>
-          <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6">
             {services.slice(3).map((service, index) => (
               <ServiceCard key={service.titleKey} service={service} index={index + 3} t={t} />
             ))}
@@ -90,26 +86,17 @@ const Services = () => {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="max-w-3xl mx-auto mt-12"
         >
-          <div className="glass-card rounded-xl p-6">
-            <div className="flex items-start justify-between gap-3">
-              <div>
-                <h3 className="font-semibold mb-2">{t("services.method.title")}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {t("services.method.text")}
-                </p>
-              </div>
-              <HoverCard>
-                <HoverCardTrigger asChild>
-                  <button className="text-muted-foreground hover:text-primary transition-colors flex-shrink-0 mt-1">
-                    <Info className="w-4 h-4" />
-                  </button>
-                </HoverCardTrigger>
-                <HoverCardContent className="w-72 text-sm">
-                  {t("services.method.hover")}
-                </HoverCardContent>
-              </HoverCard>
+          <ExpandableCard
+            className="glass-card rounded-xl p-6"
+            expandedContent={t("services.method.expand")}
+          >
+            <div>
+              <h3 className="font-semibold mb-2">{t("services.method.title")}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {t("services.method.text")}
+              </p>
             </div>
-          </div>
+          </ExpandableCard>
         </motion.div>
 
         {/* Closing + CTA */}
@@ -143,27 +130,21 @@ const ServiceCard = ({ service, index, t }: { service: any; index: number; t: (k
     viewport={{ once: true }}
     transition={{ duration: 0.5, delay: index * 0.1 }}
     whileHover={{ y: -5 }}
-    className="glass-card rounded-xl p-6 group cursor-default"
+    className="glass-card rounded-xl p-6 group"
   >
-    <div className="flex items-start justify-between gap-3 mb-4">
-      <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-        <service.icon className="w-6 h-6 text-primary" />
+    <ExpandableCard
+      expandedContent={t(service.expandKey)}
+    >
+      <div className="flex items-start gap-3 mb-4">
+        <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+          <service.icon className="w-6 h-6 text-primary" />
+        </div>
       </div>
-      <HoverCard>
-        <HoverCardTrigger asChild>
-          <button className="text-muted-foreground/50 hover:text-primary transition-colors mt-1">
-            <Info className="w-4 h-4" />
-          </button>
-        </HoverCardTrigger>
-        <HoverCardContent className="w-72 text-sm">
-          {t(service.hoverKey)}
-        </HoverCardContent>
-      </HoverCard>
-    </div>
-    <h3 className="text-xl font-semibold mb-2">{t(service.titleKey)}</h3>
-    <p className="text-muted-foreground text-sm leading-relaxed">
-      {t(service.descKey)}
-    </p>
+      <h3 className="text-xl font-semibold mb-2">{t(service.titleKey)}</h3>
+      <p className="text-muted-foreground text-sm leading-relaxed">
+        {t(service.descKey)}
+      </p>
+    </ExpandableCard>
   </motion.div>
 );
 
