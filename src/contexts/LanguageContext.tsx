@@ -87,7 +87,7 @@ const translations = {
     "about.company.quintoandar": "Marketplace imobiliário digital — Operações & Analytics",
     "about.company.ifood": "Plataforma de delivery em larga escala — Suporte Técnico & Integrações",
     "about.company.uber": "Plataforma global de mobilidade — Operações & Melhoria Contínua",
-    "about.company.99": "Plataforma brasileira de mobilidade — CX & Otimização de Processos"
+    "about.company.99": "Plataforma brasileira de mobilidade — CX & Otimização de Processos",
 
     // Tech Stack
     "tech.title1": "Como eu",
