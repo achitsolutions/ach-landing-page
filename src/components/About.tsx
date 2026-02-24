@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Linkedin, BookOpen, Eye, Code2, GraduationCap } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import ExpandableCard from "@/components/ExpandableCard";
 
 const About = () => {
   const { language, t } = useLanguage();
@@ -62,13 +62,13 @@ const About = () => {
             transition={{ duration: 0.6 }}
           >
             {/* Personal intro */}
-            <p className="text-muted-foreground mb-4 leading-relaxed italic">
+            <p className="text-sm text-muted-foreground mb-4 leading-relaxed italic">
               {t("about.intro")}
             </p>
-            <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
+            <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
               {t("about.trajectory1")}
             </p>
-            <p className="text-foreground font-medium mb-6">
+            <p className="text-sm font-medium text-foreground mb-6">
               {t("about.trajectory2")}
             </p>
 
@@ -84,26 +84,26 @@ const About = () => {
               {t("about.formation.text3")}
             </p>
 
-            {/* Connection steps */}
+            {/* Connection steps - expandable */}
             <div className="space-y-3 mb-6">
               {connections.map((conn, index) => (
-                <HoverCard key={conn.label}>
-                  <HoverCardTrigger asChild>
-                    <motion.div
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
-                      className="flex items-center gap-3 p-3 rounded-lg bg-card/30 border border-border/30 cursor-default hover:border-primary/30 transition-colors"
-                    >
+                <motion.div
+                  key={conn.label}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <ExpandableCard
+                    className="p-3 rounded-lg bg-card/30 border border-border/30 hover:border-primary/30 transition-colors"
+                    expandedContent={t(conn.textKey)}
+                  >
+                    <div className="flex items-center gap-3">
                       <conn.icon className="w-4 h-4 text-primary flex-shrink-0" />
                       <span className="text-sm font-medium">{conn.label}</span>
-                    </motion.div>
-                  </HoverCardTrigger>
-                  <HoverCardContent className="w-80 text-sm">
-                    {t(conn.textKey)}
-                  </HoverCardContent>
-                </HoverCard>
+                    </div>
+                  </ExpandableCard>
+                </motion.div>
               ))}
             </div>
 

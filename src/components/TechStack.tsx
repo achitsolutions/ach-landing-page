@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { CheckCircle2, Info, Zap, Headphones, BarChart3, Code2 } from "lucide-react";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { CheckCircle2, Zap, Headphones, BarChart3, Code2 } from "lucide-react";
+import ExpandableCard from "@/components/ExpandableCard";
 
 const TechStack = () => {
   const { t } = useLanguage();
@@ -18,19 +18,19 @@ const TechStack = () => {
       icon: Zap,
       titleKey: "tech.tools.automation",
       itemsKey: "tech.tools.automation.items",
-      hoverKey: "tech.tools.automation.hover",
+      expandKey: "tech.tools.automation.expand",
     },
     {
       icon: Headphones,
       titleKey: "tech.tools.support",
       itemsKey: "tech.tools.support.items",
-      hoverKey: "tech.tools.support.hover",
+      expandKey: "tech.tools.support.expand",
     },
     {
       icon: BarChart3,
       titleKey: "tech.tools.data",
       itemsKey: "tech.tools.data.items",
-      hoverKey: "tech.tools.data.hover",
+      expandKey: "tech.tools.data.expand",
     },
   ];
 
@@ -118,29 +118,23 @@ const TechStack = () => {
                 transition={{ delay: index * 0.1 }}
                 className="glass-card rounded-xl p-5 group"
               >
-                <div className="flex items-start justify-between mb-3">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <cat.icon className="w-5 h-5 text-primary" />
+                <ExpandableCard
+                  expandedContent={t(cat.expandKey)}
+                >
+                  <div className="flex items-start mb-3">
+                    <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                      <cat.icon className="w-5 h-5 text-primary" />
+                    </div>
                   </div>
-                  <HoverCard>
-                    <HoverCardTrigger asChild>
-                      <button className="text-muted-foreground/50 hover:text-primary transition-colors">
-                        <Info className="w-4 h-4" />
-                      </button>
-                    </HoverCardTrigger>
-                    <HoverCardContent className="w-72 text-sm">
-                      {t(cat.hoverKey)}
-                    </HoverCardContent>
-                  </HoverCard>
-                </div>
-                <h4 className="font-semibold text-sm mb-2">{t(cat.titleKey)}</h4>
-                <div className="flex flex-wrap gap-2">
-                  {t(cat.itemsKey).split(", ").map((tool) => (
-                    <span key={tool} className="tech-badge text-xs !px-3 !py-1 font-mono">
-                      {tool}
-                    </span>
-                  ))}
-                </div>
+                  <h4 className="font-semibold text-sm mb-2">{t(cat.titleKey)}</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {t(cat.itemsKey).split(", ").map((tool) => (
+                      <span key={tool} className="tech-badge text-xs !px-3 !py-1 font-mono">
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
+                </ExpandableCard>
               </motion.div>
             ))}
           </div>
@@ -155,34 +149,26 @@ const TechStack = () => {
           className="max-w-3xl mx-auto"
         >
           <div className="glass-card rounded-xl p-6">
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex items-center gap-3">
+            <ExpandableCard
+              expandedContent={t("tech.languages.expand")}
+            >
+              <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
                   <Code2 className="w-5 h-5 text-primary" />
                 </div>
                 <h3 className="font-semibold">{t("tech.languages.title")}</h3>
               </div>
-              <HoverCard>
-                <HoverCardTrigger asChild>
-                  <button className="text-muted-foreground/50 hover:text-primary transition-colors mt-1">
-                    <Info className="w-4 h-4" />
-                  </button>
-                </HoverCardTrigger>
-                <HoverCardContent className="w-72 text-sm">
-                  {t("tech.languages.hover")}
-                </HoverCardContent>
-              </HoverCard>
-            </div>
-            <p className="text-sm text-muted-foreground mb-4">
-              {t("tech.languages.intro")}
-            </p>
-            <div className="flex flex-wrap gap-3">
-              {t("tech.languages.items").split(", ").map((lang) => (
-                <span key={lang} className="tech-badge font-mono">
-                  {lang}
-                </span>
-              ))}
-            </div>
+              <p className="text-sm text-muted-foreground mb-4">
+                {t("tech.languages.intro")}
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {t("tech.languages.items").split(", ").map((lang) => (
+                  <span key={lang} className="tech-badge font-mono">
+                    {lang}
+                  </span>
+                ))}
+              </div>
+            </ExpandableCard>
           </div>
         </motion.div>
       </div>

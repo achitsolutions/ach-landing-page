@@ -73,11 +73,8 @@ const Contact = () => {
           <h2 className="section-title mb-4">
             {t("contact.title1")} <span className="gradient-text">{t("contact.title2")}</span>
           </h2>
-          <p className="section-subtitle mx-auto mb-3">
+          <p className="section-subtitle mx-auto">
             {t("contact.subtitle")}
-          </p>
-          <p className="text-sm text-muted-foreground max-w-xl mx-auto">
-            {t("contact.intro")}
           </p>
         </motion.div>
 
@@ -154,6 +151,9 @@ const Contact = () => {
                 <label>
                   Don't fill this out: <input name="bot-field" />
                 </label>
+              </p>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {t("contact.intro")}
               </p>
               <div>
                 <Input
