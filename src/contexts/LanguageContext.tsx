@@ -236,7 +236,7 @@ const translations = {
     "about.company.quintoandar": "Digital Real Estate Marketplace — Operations & Analytics",
     "about.company.ifood": "Large-Scale Food Delivery Platform — Technical Support & Integrations",
     "about.company.uber": "Global Mobility Platform — Operations & Continuous Improvement",
-    "about.company.99": "Brazilian Mobility Platform — CX & Process Optimization"
+    "about.company.99": "Brazilian Mobility Platform — CX & Process Optimization",
 
     // Tech Stack
     "tech.title1": "How I",
