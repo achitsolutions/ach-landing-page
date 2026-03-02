@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Terminal, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { trackEvent } from "@/lib/gtag";
 
 const Hero = () => {
   const { t } = useLanguage();
@@ -84,7 +85,10 @@ const Hero = () => {
               <Button 
                 size="lg" 
                 className="bg-primary text-primary-foreground hover:bg-primary/90 glow-box group"
-                onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => {
+                  trackEvent('contact_cta_click', { event_category: 'CTA', event_label: 'hero' });
+                  document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
+                }}
               >
                 {t("hero.cta.primary")}
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />

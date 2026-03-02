@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { z } from "zod";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { trackEvent } from "@/lib/gtag";
 
 const Contact = () => {
   const { language, t } = useLanguage();
@@ -33,6 +34,7 @@ const Contact = () => {
       return;
     }
 
+    trackEvent('form_submit_click', { event_category: 'Form', event_label: 'contact' });
     setIsSubmitting(true);
     
     try {

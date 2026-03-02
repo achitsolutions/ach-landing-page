@@ -3,6 +3,7 @@ import { Database, Workflow, Settings, FileText, GraduationCap, ArrowRight, Link
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import ExpandableCard from "@/components/ExpandableCard";
+import { trackEvent } from "@/lib/gtag";
 
 const Services = () => {
   const { t } = useLanguage();
@@ -112,7 +113,10 @@ const Services = () => {
           </p>
           <Button
             className="bg-primary text-primary-foreground hover:bg-primary/90 group"
-            onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => {
+              trackEvent('contact_cta_click', { event_category: 'CTA', event_label: 'services' });
+              document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
+            }}
           >
             {t("services.cta")}
             <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
