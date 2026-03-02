@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Terminal, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { trackEvent } from "@/lib/gtag";
 
 const Header = () => {
   const { language, setLanguage, t } = useLanguage();
@@ -80,7 +81,10 @@ const Header = () => {
             <Button
               size="sm"
               className="bg-primary text-primary-foreground hover:bg-primary/90"
-              onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => {
+                trackEvent('contact_cta_click', { event_category: 'CTA', event_label: 'header_desktop' });
+                document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
+              }}
             >
               {t("nav.cta")}
             </Button>
@@ -147,6 +151,7 @@ const Header = () => {
               <Button
                 className="bg-primary text-primary-foreground hover:bg-primary/90 mt-2"
                 onClick={() => {
+                  trackEvent('contact_cta_click', { event_category: 'CTA', event_label: 'header_mobile' });
                   document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
                   setIsMobileMenuOpen(false);
                 }}
