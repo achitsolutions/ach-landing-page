@@ -19,7 +19,7 @@ const translations = {
     "nav.cta": "Fale Conosco",
 
     // Hero
-    "hero.badge": "Consultoria Técnica Sênior",
+    "hero.badge": "Arquitetura e Inteligência Operacional",
     "hero.headline1": "Integrações,",
     "hero.headline2": "Dados",
     "hero.headline3": "& Operações",
@@ -174,7 +174,7 @@ const translations = {
     "nav.cta": "Get in Touch",
 
     // Hero
-    "hero.badge": "Senior Technical Consultant",
+    "hero.badge": "Architecture and Operational Intelligence",
     "hero.headline1": "Integrations,",
     "hero.headline2": "Data",
     "hero.headline3": "& Operations",
