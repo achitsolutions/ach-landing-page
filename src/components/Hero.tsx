@@ -63,10 +63,9 @@ const Hero = () => {
             </motion.div>
 
             {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-[3.25rem] lg:text-[3.75rem] font-bold tracking-tight leading-[1.15] mb-6">
               {t("hero.headline1")}{" "}
-              <span className="gradient-text">{t("hero.headline2")}</span>
-              <br />
+              <span className="gradient-text">{t("hero.headline2")}</span>{" "}
               {t("hero.headline3")}
             </h1>
 
