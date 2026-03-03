@@ -7,11 +7,11 @@ const About = () => {
   const { language, t } = useLanguage();
 
   const experiences = [
-    { company: "OneLocal", contextKey: "about.company.onelocal" },
-    { company: "QuintoAndar", contextKey: "about.company.quintoandar" },
-    { company: "99", contextKey: "about.company.99" },
-    { company: "Uber", contextKey: "about.company.uber" },
-    { company: "iFood", contextKey: "about.company.ifood" },
+    { companyKey: "about.exp.onelocal", areasKey: "about.areas.onelocal" },
+    { companyKey: "about.exp.quintoandar", areasKey: "about.areas.quintoandar" },
+    { companyKey: "about.exp.99", areasKey: "about.areas.99" },
+    { companyKey: "about.exp.uber", areasKey: "about.areas.uber" },
+    { companyKey: "about.exp.ifood", areasKey: "about.areas.ifood" },
   ];
 
   const connections = [
@@ -151,17 +151,15 @@ const About = () => {
                 <div className="space-y-4">
                   {experiences.map((exp, index) => (
                     <motion.div
-                      key={exp.company}
+                      key={exp.companyKey}
                       initial={{ opacity: 0, x: 20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.2 + index * 0.1 }}
-                      className="p-3 rounded-lg bg-background/30 border border-border/30"
+                      className="p-2.5 rounded-lg bg-background/30 border border-border/30"
                     >
-                      <span className="font-medium block">{exp.company}</span>
-                      {t(exp.contextKey).split('\n').map((line, i) => (
-                        <span key={i} className="text-xs text-muted-foreground block">{line}</span>
-                      ))}
+                      <span className="font-medium text-sm block">{t(exp.companyKey)}</span>
+                      <span className="text-xs text-muted-foreground">{t(exp.areasKey)}</span>
                     </motion.div>
                   ))}
                 </div>
