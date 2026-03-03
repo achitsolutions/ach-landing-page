@@ -19,10 +19,10 @@ const translations = {
     "nav.cta": "Fale Conosco",
 
     // Hero
-    "hero.badge": "Arquitetura e Inteligência Operacional",
-    "hero.headline1": "Integrações,",
+    "hero.badge": "Inteligência de Negócios",
+    "hero.headline1": "Operações,",
     "hero.headline2": "Dados",
-    "hero.headline3": "& Operações",
+    "hero.headline3": "& Integrações",
     "hero.subheadline": "Ajudando a transformar ambientes complexos em estruturas organizadas, eficientes e pensadas para o longo prazo.",
     "hero.cta.primary": "Entrar em Contato",
     "hero.cta.secondary": "Nossos Serviços",
@@ -174,10 +174,10 @@ const translations = {
     "nav.cta": "Get in Touch",
 
     // Hero
-    "hero.badge": "Architecture and Operational Intelligence",
-    "hero.headline1": "Integrations,",
+    "hero.badge": "Business Intelligence",
+    "hero.headline1": "Operations,",
     "hero.headline2": "Data",
-    "hero.headline3": "& Operations",
+    "hero.headline3": "& Integrations",
     "hero.subheadline": "Helping transform complex environments into organized, efficient structures built for the long term.",
     "hero.cta.primary": "Get in Touch",
     "hero.cta.secondary": "Our Services",
