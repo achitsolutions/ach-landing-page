@@ -7,10 +7,11 @@ const About = () => {
   const { language, t } = useLanguage();
 
   const experiences = [
+    { company: "OneLocal", contextKey: "about.company.onelocal" },
     { company: "QuintoAndar", contextKey: "about.company.quintoandar" },
-    { company: "iFood", contextKey: "about.company.ifood" },
-    { company: "Uber", contextKey: "about.company.uber" },
     { company: "99", contextKey: "about.company.99" },
+    { company: "Uber", contextKey: "about.company.uber" },
+    { company: "iFood", contextKey: "about.company.ifood" },
   ];
 
   const connections = [
@@ -158,7 +159,9 @@ const About = () => {
                       className="p-3 rounded-lg bg-background/30 border border-border/30"
                     >
                       <span className="font-medium block">{exp.company}</span>
-                      <span className="text-xs text-muted-foreground">{t(exp.contextKey)}</span>
+                      {t(exp.contextKey).split('\n').map((line, i) => (
+                        <span key={i} className="text-xs text-muted-foreground block">{line}</span>
+                      ))}
                     </motion.div>
                   ))}
                 </div>

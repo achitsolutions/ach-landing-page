@@ -84,10 +84,11 @@ const translations = {
     "about.description": "A ACH IT Solutions consolida a bagagem de Carolina Honório como especialista em tecnologia, integrações de dados e operações de produto, com foco em experiência do cliente.",
     "about.experience": "Experiência Profissional",
     "about.cta": "Conecte no LinkedIn",
-    "about.company.quintoandar": "Marketplace imobiliário digital — Operações & Analytics",
-    "about.company.ifood": "Plataforma de delivery em larga escala — Suporte Técnico & Integrações",
-    "about.company.uber": "Plataforma global de mobilidade — Operações & Melhoria Contínua",
-    "about.company.99": "Plataforma brasileira de mobilidade — CX & Otimização de Processos",
+    "about.company.onelocal": "SaaS B2B de Marketing (Canadá)\nOperações Técnicas & Produto | Integrações SaaS | Arquitetura de Dados",
+    "about.company.quintoandar": "Marketplace PropTech\nEstratégia Operacional | CX Orientado a Dados | Otimização de Processos",
+    "about.company.99": "Plataforma de Mobilidade\nOperações Críticas | Análise de Incidentes | Melhoria Contínua",
+    "about.company.uber": "Plataforma Global de Mobilidade\nExcelência Operacional | Sistemas de Conhecimento | Métricas de Performance",
+    "about.company.ifood": "Plataforma FoodTech\nDesenho de Processos | Operações B2B | Estruturação de Métrica",
 
     // Tech Stack
     "tech.title1": "Como eu",
@@ -233,10 +234,11 @@ const translations = {
     "about.description": "ACH IT Solutions brings together Carolina Honório’s experience as a technology specialist in data integrations and product operations, with a strong focus on customer experience.",
     "about.experience": "Professional Experience",
     "about.cta": "Connect on LinkedIn",
-    "about.company.quintoandar": "Digital Real Estate Marketplace — Operations & Analytics",
-    "about.company.ifood": "Large-Scale Food Delivery Platform — Technical Support & Integrations",
-    "about.company.uber": "Global Mobility Platform — Operations & Continuous Improvement",
-    "about.company.99": "Brazilian Mobility Platform — CX & Process Optimization",
+    "about.company.onelocal": "Canadian B2B Marketing SaaS\nTechnical & Product Operations | SaaS Integrations | Data Architecture",
+    "about.company.quintoandar": "Brazilian PropTech Marketplace\nOperational Strategy | Data-Driven CX | Process Optimization",
+    "about.company.99": "Brazilian Mobility Platform\nCritical Operations | Incident Analysis | Continuous Improvement",
+    "about.company.uber": "Global Mobility Platform\nOperational Excellence | Knowledge Systems | Performance Metrics",
+    "about.company.ifood": "Brazilian FoodTech Platform\nProcess Design | B2B Operations | Performance Frameworks",
 
     // Tech Stack
     "tech.title1": "How I",
