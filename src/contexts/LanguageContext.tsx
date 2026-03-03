@@ -335,6 +335,15 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     localStorage.setItem("ach-language", language);
     document.documentElement.lang = language === "pt" ? "pt-BR" : "en";
+
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute("content",
+        language === "pt"
+          ? "Arquitetura de integrações SaaS, automação e inteligência operacional orientada a dados. Estruturação de sistemas para operações digitais mais eficientes e escaláveis."
+          : "SaaS integration architecture, automation and data-driven operational intelligence. Structuring systems for scalable and high-performance digital operations."
+      );
+    }
   }, [language]);
 
   const t = (key: string): string => {
