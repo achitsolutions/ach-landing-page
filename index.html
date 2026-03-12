@@ -1,14 +1,6 @@
 <!doctype html>
 <html lang="pt-BR">
   <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7Q8GXW3B00"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-7Q8GXW3B00');
-    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ACH IT Solutions | Soluções de TI Inteligentes</title>
@@ -25,6 +17,25 @@
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
     
     <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <!-- Preload critical font (Inter 400/700 Latin subset only) -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- Load fonts with display=swap and subset to latin -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap&subset=latin" media="print" onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap&subset=latin" />
+    </noscript>
+
+    <!-- Inline critical CSS for above-the-fold -->
+    <style>
+      *,*::before,*::after{box-sizing:border-box;margin:0}
+      html{scroll-behavior:smooth}
+      body{font-family:'Inter',system-ui,sans-serif;background:#0a0c10;color:#e2e8f0;-webkit-font-smoothing:antialiased}
+      #root{min-height:100vh}
+    </style>
   </head>
 
   <body>
@@ -37,5 +48,22 @@
     
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Google Analytics: deferred, non-blocking -->
+    <script>
+      window.addEventListener('load', function() {
+        var s = document.createElement('script');
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-7Q8GXW3B00';
+        s.async = true;
+        document.head.appendChild(s);
+        s.onload = function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', 'G-7Q8GXW3B00');
+        };
+      });
+    </script>
   </body>
 </html>
