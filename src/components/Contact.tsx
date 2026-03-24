@@ -146,7 +146,7 @@ const Contact = () => {
               method="POST" 
               data-netlify="true" 
               netlify-honeypot="bot-field"
-              className="glass-card rounded-xl p-6 space-y-4"
+              className="glass-card rounded-xl p-6 pt-5 space-y-4"
             >
               <input type="hidden" name="form-name" value="contact" />
               <p className="hidden">
@@ -154,7 +154,7 @@ const Contact = () => {
                   Don't fill this out: <input name="bot-field" />
                 </label>
               </p>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-sm text-muted-foreground leading-relaxed text-center mb-1">
                 {t("contact.intro")}
               </p>
               <div>
