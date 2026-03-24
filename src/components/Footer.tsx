@@ -1,5 +1,6 @@
 import { Terminal, Linkedin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -33,9 +34,12 @@ const Footer = () => {
             </a>
           </nav>
           
-          <p className="text-sm text-muted-foreground">
-            © {currentYear} {t("footer.rights")}
-          </p>
+          <div className="flex items-center gap-4 text-sm text-muted-foreground">
+            <Link to="/privacy" className="hover:text-foreground transition-colors">
+              {language === "pt" ? "Política de Privacidade" : "Privacy Policy"}
+            </Link>
+            <span>© {currentYear} {t("footer.rights")}</span>
+          </div>
         </div>
       </div>
     </footer>
