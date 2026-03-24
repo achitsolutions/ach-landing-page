@@ -3,7 +3,7 @@ import { Terminal } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const PrivacyPolicy = () => {
-  const { language, setLanguage, t } = useLanguage();
+  const { language, setLanguage } = useLanguage();
 
   return (
     <div className="min-h-screen bg-background">
