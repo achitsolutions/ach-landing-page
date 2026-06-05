@@ -157,6 +157,7 @@ const translations = {
     "contact.form.success": "Mensagem enviada com sucesso!",
     "contact.form.success.description": "Entrarei em contato em breve.",
     "contact.email.label": "Email",
+    "contact.github.label": "GitHub",
     "contact.location.label": "Localização",
     "contact.location.value": "Brasil",
 
@@ -312,6 +313,7 @@ const translations = {
     "contact.form.success": "Message sent successfully!",
     "contact.form.success.description": "I'll get back to you soon.",
     "contact.email.label": "Email",
+    "contact.github.label": "GitHub",
     "contact.location.label": "Location",
     "contact.location.value": "Brazil",
 
