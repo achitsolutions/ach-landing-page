@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Send, Mail, MapPin, Linkedin } from "lucide-react";
+import { Send, Mail, MapPin, Linkedin, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -117,6 +117,23 @@ const Contact = () => {
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
                   /in/carolinahonorio
+                </a>
+              </div>
+            </div>
+            
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
+                <Github className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <h3 className="font-medium mb-1">{t("contact.github.label")}</h3>
+                <a 
+                  href="https://github.com/carolinarhonorio/operations-intelligence-case-studies" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  carolinarhonorio/operations-intelligence-case-studies
                 </a>
               </div>
             </div>
