@@ -128,7 +128,7 @@ const Contact = () => {
               <div>
                 <h3 className="font-medium mb-1">{t("contact.github.label")}</h3>
                 <a 
-                  href="https://github.com/carolinarhonorio/case-studies" 
+                  href="https://github.com/carolinarhonorio/operations-intelligence-case-studies" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
