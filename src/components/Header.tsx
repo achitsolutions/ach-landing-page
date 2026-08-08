@@ -1,22 +1,41 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Terminal, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { trackEvent } from "@/lib/gtag";
+import { getSectionIdForPath, scrollToSectionWhenReady } from "@/lib/sectionNav";
 
 const Header = () => {
   const { language, setLanguage, t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const navItems = [
-    { label: t("nav.services"), href: "#servicos" },
-    { label: t("nav.about"), href: "#sobre" },
-    { label: t("nav.tech"), href: "#tecnologias" },
-    { label: t("nav.ai"), href: "#ia" },
-    { label: t("nav.contact"), href: "#contato" }
+    { label: t("nav.services"), to: "/servicos" },
+    { label: t("nav.about"), to: "/sobre" },
+    { label: t("nav.tech"), to: "/tecnologias" },
+    { label: t("nav.ai"), to: "/ia" },
+    { label: t("nav.contact"), to: "/contato" }
   ];
+
+  // Re-scroll when the target route is already active (no location change).
+  const handleSectionClick = (to: string) => {
+    if (pathname !== to) return;
+    const sectionId = getSectionIdForPath(to);
+    if (sectionId) scrollToSectionWhenReady(sectionId, "smooth");
+  };
+
+  const goToContact = () => {
+    if (pathname === "/contato") {
+      scrollToSectionWhenReady("contato", "smooth");
+    } else {
+      navigate("/contato");
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,21 +54,28 @@ const Header = () => {
       <div className="section-container py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2">
+          <Link
+            to="/"
+            onClick={() => {
+              if (pathname === "/") window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            className="flex items-center gap-2"
+          >
             <Terminal className="w-6 h-6 text-primary" />
             <span className="font-bold text-lg">ACH IT Solutions</span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
+              <Link
+                key={item.to}
+                to={item.to}
+                onClick={() => handleSectionClick(item.to)}
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -83,7 +109,7 @@ const Header = () => {
               className="bg-primary text-primary-foreground hover:bg-primary/90"
               onClick={() => {
                 trackEvent('contact_cta_click', { event_category: 'CTA', event_label: 'header_desktop' });
-                document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
+                goToContact();
               }}
             >
               {t("nav.cta")}
@@ -116,14 +142,17 @@ const Header = () => {
           >
             <nav className="section-container py-4 flex flex-col gap-4">
               {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
+                <Link
+                  key={item.to}
+                  to={item.to}
                   className="text-muted-foreground hover:text-foreground transition-colors py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => {
+                    handleSectionClick(item.to);
+                    setIsMobileMenuOpen(false);
+                  }}
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
               {/* Mobile Language Toggle */}
               <div className="flex items-center gap-2 pt-2 border-t border-border/30">
@@ -152,7 +181,7 @@ const Header = () => {
                 className="bg-primary text-primary-foreground hover:bg-primary/90 mt-2"
                 onClick={() => {
                   trackEvent('contact_cta_click', { event_category: 'CTA', event_label: 'header_mobile' });
-                  document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
+                  goToContact();
                   setIsMobileMenuOpen(false);
                 }}
               >

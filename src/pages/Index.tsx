@@ -1,4 +1,6 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
+import { getSectionIdForPath, scrollToSectionWhenReady } from "@/lib/sectionNav";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 
@@ -14,6 +16,33 @@ const SectionFallback = () => (
 );
 
 const Index = () => {
+  const { pathname } = useLocation();
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    const sectionId = getSectionIdForPath(pathname);
+    const firstRender = isFirstRender.current;
+    isFirstRender.current = false;
+
+    if (!sectionId) {
+      if (!firstRender) window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    const behavior: ScrollBehavior = firstRender ? "auto" : "smooth";
+    const cancel = scrollToSectionWhenReady(sectionId, behavior);
+
+    // Lazy sections above the target can shift layout after mounting.
+    const timers = [300, 900, 1500].map((delay) =>
+      window.setTimeout(() => scrollToSectionWhenReady(sectionId, behavior), delay),
+    );
+
+    return () => {
+      cancel();
+      timers.forEach((timer) => window.clearTimeout(timer));
+    };
+  }, [pathname]);
+
   return (
     <div className="min-h-screen bg-background">
       <Header />

@@ -1,10 +1,25 @@
 import { Terminal, Linkedin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { scrollToSectionWhenReady, getSectionIdForPath } from "@/lib/sectionNav";
 
 const Footer = () => {
   const { language, t } = useLanguage();
   const currentYear = new Date().getFullYear();
+  const { pathname } = useLocation();
+
+  const sectionLinks = [
+    { to: "/servicos", label: t("nav.services") },
+    { to: "/sobre", label: t("nav.about") },
+    { to: "/tecnologias", label: t("nav.tech") },
+    { to: "/contato", label: t("nav.contact") },
+  ];
+
+  const handleSectionClick = (to: string) => {
+    if (pathname !== to) return;
+    const sectionId = getSectionIdForPath(to);
+    if (sectionId) scrollToSectionWhenReady(sectionId, "smooth");
+  };
 
   return (
     <footer className="py-8 border-t border-border/30">
@@ -19,10 +34,16 @@ const Footer = () => {
           </div>
           
           <nav className="flex items-center gap-6 text-sm text-muted-foreground">
-            <a href="#servicos" className="hover:text-foreground transition-colors">{t("nav.services")}</a>
-            <a href="#sobre" className="hover:text-foreground transition-colors">{t("nav.about")}</a>
-            <a href="#tecnologias" className="hover:text-foreground transition-colors">{t("nav.tech")}</a>
-            <a href="#contato" className="hover:text-foreground transition-colors">{t("nav.contact")}</a>
+            {sectionLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                onClick={() => handleSectionClick(link.to)}
+                className="hover:text-foreground transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
             <a 
               href="https://www.linkedin.com/in/carolinahonorio/" 
               target="_blank" 
