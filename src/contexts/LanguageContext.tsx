@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  getEquivalentPath,
+  getLanguageForPath,
+  getSectionPath,
+} from "@/lib/sectionNav";
 
 type Language = "pt" | "en";
 
@@ -6,6 +12,8 @@ interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   t: (key: string) => string;
+  /** Localized route for a section id (e.g. "servicos" -> "/servicos" | "/services"). */
+  sectionPath: (sectionId: string) => string;
 }
 
 const translations = {
@@ -326,13 +334,41 @@ const translations = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState<Language>(() => {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  const [language, setLanguageState] = useState<Language>(() => {
     if (typeof window !== "undefined") {
+      const fromPath = getLanguageForPath(window.location.pathname);
+      if (fromPath) return fromPath;
       const saved = localStorage.getItem("ach-language");
       if (saved === "pt" || saved === "en") return saved;
     }
     return "pt";
   });
+
+  // Direct access to a localized section route defines the language.
+  useEffect(() => {
+    const fromPath = getLanguageForPath(pathname);
+    if (fromPath && fromPath !== language) setLanguageState(fromPath);
+  }, [pathname, language]);
+
+  // Switching language also converts the current section route.
+  const setLanguage = useCallback(
+    (lang: Language) => {
+      setLanguageState(lang);
+      const equivalent = getEquivalentPath(pathname, lang);
+      if (equivalent && equivalent !== pathname) {
+        navigate(equivalent, { replace: true });
+      }
+    },
+    [pathname, navigate],
+  );
+
+  const sectionPath = useCallback(
+    (sectionId: string) => getSectionPath(sectionId, language),
+    [language],
+  );
 
   useEffect(() => {
     localStorage.setItem("ach-language", language);
@@ -353,7 +389,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage, t, sectionPath }}>
       {children}
     </LanguageContext.Provider>
   );

@@ -4,15 +4,15 @@ import { Link, useLocation } from "react-router-dom";
 import { scrollToSectionWhenReady, getSectionIdForPath } from "@/lib/sectionNav";
 
 const Footer = () => {
-  const { language, t } = useLanguage();
+  const { language, t, sectionPath } = useLanguage();
   const currentYear = new Date().getFullYear();
   const { pathname } = useLocation();
 
   const sectionLinks = [
-    { to: "/servicos", label: t("nav.services") },
-    { to: "/sobre", label: t("nav.about") },
-    { to: "/tecnologias", label: t("nav.tech") },
-    { to: "/contato", label: t("nav.contact") },
+    { to: sectionPath("servicos"), label: t("nav.services") },
+    { to: sectionPath("sobre"), label: t("nav.about") },
+    { to: sectionPath("tecnologias"), label: t("nav.tech") },
+    { to: sectionPath("contato"), label: t("nav.contact") },
   ];
 
   const handleSectionClick = (to: string) => {

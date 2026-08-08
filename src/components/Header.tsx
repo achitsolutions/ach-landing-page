@@ -8,18 +8,18 @@ import { trackEvent } from "@/lib/gtag";
 import { getSectionIdForPath, scrollToSectionWhenReady } from "@/lib/sectionNav";
 
 const Header = () => {
-  const { language, setLanguage, t } = useLanguage();
+  const { language, setLanguage, t, sectionPath } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
   const navItems = [
-    { label: t("nav.services"), to: "/servicos" },
-    { label: t("nav.about"), to: "/sobre" },
-    { label: t("nav.tech"), to: "/tecnologias" },
-    { label: t("nav.ai"), to: "/ia" },
-    { label: t("nav.contact"), to: "/contato" }
+    { label: t("nav.services"), to: sectionPath("servicos") },
+    { label: t("nav.about"), to: sectionPath("sobre") },
+    { label: t("nav.tech"), to: sectionPath("tecnologias") },
+    { label: t("nav.ai"), to: sectionPath("ia") },
+    { label: t("nav.contact"), to: sectionPath("contato") }
   ];
 
   // Re-scroll when the target route is already active (no location change).
@@ -30,10 +30,11 @@ const Header = () => {
   };
 
   const goToContact = () => {
-    if (pathname === "/contato") {
+    const contactPath = sectionPath("contato");
+    if (pathname === contactPath) {
       scrollToSectionWhenReady("contato", "smooth");
     } else {
-      navigate("/contato");
+      navigate(contactPath);
     }
   };
 
