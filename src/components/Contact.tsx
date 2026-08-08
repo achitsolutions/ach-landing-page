@@ -11,6 +11,16 @@ import { trackEvent } from "@/lib/gtag";
 
 const Contact = () => {
   const { language, t } = useLanguage();
+
+  // Strip HTML markup and control characters so stored submissions can never be
+  // rendered as active content in any downstream admin/inbox UI.
+  const sanitize = (value: string) =>
+    value
+      .replace(/<[^>]*>/g, "")
+      .replace(/<|>/g, "")
+      // eslint-disable-next-line no-control-regex
+      .replace(/[\u0000-\u0009\u000B\u000C\u000E-\u001F\u007F]/g, " ")
+      .trim();
   
   const contactSchema = z.object({
     name: z.string().trim().min(1, language === "pt" ? "Nome é obrigatório" : "Name is required").max(100, language === "pt" ? "Nome muito longo" : "Name too long"),
@@ -28,7 +38,13 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    const result = contactSchema.safeParse(formData);
+    const sanitizedData = {
+      name: sanitize(formData.name),
+      email: sanitize(formData.email),
+      message: sanitize(formData.message),
+    };
+
+    const result = contactSchema.safeParse(sanitizedData);
     if (!result.success) {
       toast.error(result.error.errors[0].message);
       return;
@@ -43,7 +59,7 @@ const Contact = () => {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams({
           "form-name": "contact",
-          ...formData
+          ...result.data
         }).toString()
       });
 
