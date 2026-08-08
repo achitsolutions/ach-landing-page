@@ -19,8 +19,7 @@ const Contact = () => {
       .replace(/<[^>]*>/g, "")
       .replace(/<|>/g, "")
       // eslint-disable-next-line no-control-regex
-      .replace(/[\u0000-\u001F\u007F]/g, " ")
-      .replace(/\s{3,}/g, "  ")
+      .replace(/[\u0000-\u0009\u000B\u000C\u000E-\u001F\u007F]/g, " ")
       .trim();
   
   const contactSchema = z.object({
