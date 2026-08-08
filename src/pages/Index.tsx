@@ -33,11 +33,9 @@ const Index = () => {
     const cancel = scrollToSectionWhenReady(sectionId, behavior);
 
     // Lazy sections above the target can shift layout after mounting.
-    const timers = firstRender
-      ? [300, 900].map((delay) =>
-          window.setTimeout(() => scrollToSectionWhenReady(sectionId, "auto"), delay),
-        )
-      : [];
+    const timers = [300, 900, 1500].map((delay) =>
+      window.setTimeout(() => scrollToSectionWhenReady(sectionId, behavior), delay),
+    );
 
     return () => {
       cancel();
