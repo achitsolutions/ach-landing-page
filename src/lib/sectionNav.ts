@@ -9,7 +9,7 @@ export const SECTION_ROUTES: Record<string, string> = {
 export const SECTION_PATHS = Object.keys(SECTION_ROUTES);
 
 export const getSectionIdForPath = (pathname: string): string | null =>
-  SECTION_ROUTES[pathname.replace(/\/+$/, "") || "/"] ?? null;
+  getSectionIdForAnyPath(pathname);
 
 const getHeaderOffset = () =>
   document.querySelector("header")?.getBoundingClientRect().height ?? 72;
